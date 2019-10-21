@@ -11,14 +11,14 @@ from netmiko import ConnectHandler
 
 connectionHandle = ConnectHandler(**devices[1])
 
-output = connectionHandle.send_command_timing("ping", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("8.8.8.8", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
-output += connectionHandle.send_command_timing("\n", strip_prompt=False, strip_command=False)
+output = connectionHandle.send_command("ping", expect_string=r"Protocol", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"Target", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("8.8.8.8", expect_string=r"Repeat", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"Datagram", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"Timeout", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"Extended", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"Sweep", strip_prompt=False, strip_command=False)
+output += connectionHandle.send_command("\n", expect_string=r"#", strip_prompt=False, strip_command=False)
 
 connectionHandle.disconnect()
 
