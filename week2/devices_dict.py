@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from getpass import getpass
-from netmiko import ConnectHandler
 
 lab_password = getpass()
 
@@ -71,9 +70,3 @@ devices = [
     },   
     ]
 
-#BEGIN INTERACTIVE PORTION
-
-for device in devices[7:9]:
-    net_connect = ConnectHandler(**device)
-    print(net_connect.find_prompt())
-    net_connect.disconnect()    
