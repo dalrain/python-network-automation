@@ -1,7 +1,7 @@
 #!/usr/bin/env/python
 
-import netmiko_dict_template
-from netmiko_dict_template import devices
+import devices_dict
+from devices_dict import devices
 from netmiko import ConnectHandler
 
 for device in devices[7:9]:
