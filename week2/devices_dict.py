@@ -9,14 +9,14 @@ devices = [
     'host':'cisco3.lasthop.io',
     'username':'pyclass',
     'password':lab_password,
-    'device_type':'cisco_xe',
+    'device_type':'cisco_ios',
     #'session_log':'session_log.log',
     },   
     {
     'host':'cisco4.lasthop.io',
     'username':'pyclass',
     'password':lab_password,
-    'device_type':'cisco_xe',
+    'device_type':'cisco_ios',
     #'session_log':'session_log.log',
     },   
     {
