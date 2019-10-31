@@ -9,8 +9,9 @@ Start
   ^Port.*Type\s*$$ -> ShowInterfaces
 
 ShowInterfaces
-  ^${INTERFACE}\s+${STATUS}\s+${VLAN}\s+${DUPLEX}\s+${SPEED}\s+{TYPE}$$ -> Record
+  ^${INTERFACE}\s+${STATUS}\s+${VLAN}\s+${DUPLEX}\s+${SPEED}\s+${TYPE}$$ -> Record
 
+EOF
 
 #Port      Name  Status       Vlan  Duplex Speed Type 
 #Gi0/1/0         notconnect   1     auto   auto  10/100/1000BaseTX
