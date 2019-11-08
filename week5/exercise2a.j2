@@ -1,0 +1,7 @@
+{%- for unit, attributes in device.items() %}
+{{unit}}
+  {%- for interface, interface_config in attributes["interfaces"].items() %}
+    interface {{interface}}
+    ip address {{interface_config["ip_address"]}}/{{interface_config["netmask"]}}
+  {%- endfor %}
+{%- endfor %}
