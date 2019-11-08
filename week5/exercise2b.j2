@@ -1,0 +1,10 @@
+{%- for unit, attributes in device.items() %}
+{{unit}}
+  {%- for interface, interface_config in attributes["interfaces"].items() %}
+    interface {{interface}}
+    ip address {{interface_config["ip_address"]}}/{{interface_config["netmask"]}}
+  {%- endfor %}
+  router bgp {{attributes["local_as"]}}
+    neighbor {{attributes["peer_ip"]}} remote-as {{attributes["local_as"]}}
+      address-family ipv4 unicast
+{%- endfor %}
