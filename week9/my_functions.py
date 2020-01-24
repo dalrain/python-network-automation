@@ -1,6 +1,4 @@
 from napalm import get_network_driver
-from pprint import pprint
-from my_devices import network_devices
 
 
 #This takes a single device and returns a connection handle that can be manipulated as desired
@@ -14,3 +12,24 @@ def open_napalm_connection(device):
     connection_handle = driver(**device)
     connection_handle.open()
     return connection_handle
+
+def create_backup(connection):
+    """This function uses a napalm config getter and saves a text file with the full output"""
+    backup = connection.get_config()
+    filename = f"{connection.hostname}-running-config.txt"
+
+    with open(filename, "w") as file_handle:
+        # "running" is the key to reach into the returned get_config output, which may have multiple configs returned
+        file_handle.write(backup["running"])
+
+def create_checkpoint(connection):
+    """This function pulls the current checkpoint if available and writes it as a text file to disk"""
+    if "nxos" in connection.platform:
+        filename = f"{connection.hostname}-checkpoint-config.txt"
+        backup = connection._get_checkpoint_file()
+
+        with open(filename, "w") as f:
+            f.write(backup)
+
+    else:
+        raise ValueError("Saving a checkpoint requires device to be NX-OS")
