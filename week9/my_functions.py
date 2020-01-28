@@ -16,7 +16,7 @@ def open_napalm_connection(device):
 def create_backup(connection):
     """This function uses a napalm config getter and saves a text file with the full output"""
     backup = connection.get_config()
-    filename = f"{connection.hostname}-running-config.txt"
+    filename = f"{connection.hostname}-running-config.log"
 
     with open(filename, "w") as file_handle:
         # "running" is the key to reach into the returned get_config output, which may have multiple configs returned
@@ -25,7 +25,7 @@ def create_backup(connection):
 def create_checkpoint(connection):
     """This function pulls the current checkpoint if available and writes it as a text file to disk"""
     if "nxos" in connection.platform:
-        filename = f"{connection.hostname}-checkpoint-config.txt"
+        filename = f"{connection.hostname}-checkpoint-config.log"
         backup = connection._get_checkpoint_file()
 
         with open(filename, "w") as f:
